@@ -7,20 +7,22 @@ import axios from 'axios';
 function MyApp() { 
   const [characters, setCharacters] = useState([]);
 
-  function removeOneCharacter(index) {
+  async function removeOneCharacter(index, idNum) {
     const updated = characters.filter((character, i) => {
       return i !== index
-    });
-    setCharacters(updated);
+    });    
+    setCharacters(updated);    
+    const response = await axios.delete('http://localhost:5000/users/' + idNum );   
+    return response.data.users_list;
   }
 
   function updateList(person) {
     makePostCall(person).then(result =>{
-      if(result && result.status === 200)    
+      if(result && result.status === 201)    
         setCharacters([...characters, person]);
     });
-
   }
+
 
   async function fetchAll() {
     try {
