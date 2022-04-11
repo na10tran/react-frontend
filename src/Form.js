@@ -5,6 +5,7 @@ function Form(props) {
         {
             name:"",
             job: "",
+            id: ""
         }
     );
 
@@ -14,7 +15,7 @@ function Form(props) {
             setPerson (
                 {name: person['name'], job:value}
             );
-        else 
+        else
             setPerson (
                 {name: value, job: person['job']}
             );
